@@ -1,0 +1,69 @@
+<div class="flex items-center justify-center">
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="registerUser(registerForm)"
+    class="w-[50%] mt-10 shadow-xl p-5 flex flex-col items-center space-y-3"
+  >
+    <h1 class="text-center text-3xl font-bold">Register</h1>
+
+    <div class="flex flex-col">
+      <label class="form-label">First Name</label>
+      <input
+        type="text"
+        class="bg-gray-100 h-10 w-80"
+        formControlName="FirstName"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="form-label" for="form2Example2">Last Name</label>
+      <input
+        type="text"
+        class="bg-gray-100 h-10 w-80"
+        formControlName="LastName"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="form-label" for="form2Example1">Email address</label>
+      <input
+        type="email"
+        class="bg-gray-100 h-10 w-80"
+        formControlName="Email"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="form-label" for="form2Example2">Password</label>
+      <input
+        type="password"
+        class="bg-gray-100 h-10 w-80"
+        formControlName="PasswordHash"
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="form-label" for="form2Example2">Role</label>
+      <select formControlName="Role" class="bg-gray-100 h-10 w-80">
+        <option value="LEARNER">LEARNER</option>
+        <option value="TRAINER">TRAINER</option>
+      </select>
+    </div>
+
+    <!-- Submit button -->
+    <button
+      type="submit"
+      class="bg-blue-500 px-5 py-2 text-white mt-5 rounded-lg cursor-pointer"
+    >
+      Register
+    </button>
+
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>
+        Already have a account?
+        <a href="#!" class="text-blue-600" routerLink="/login">Login</a>
+      </p>
+    </div>
+  </form>
+</div>
