@@ -12,7 +12,7 @@ import { User } from '../Types/User';
   styleUrl: './trainer-home.component.css',
 })
 export class TrainerHomeComponent {
-  user: User;
+  user!: User;
   myCourses!: CourseDTO[];
   haveCourses: boolean = false;
   constructor(
@@ -20,7 +20,9 @@ export class TrainerHomeComponent {
     private courseService: CourseService,
     private router: Router
   ) {
-    this.user = this.userStorage.getUser();
+    this.userStorage.getUser().subscribe((response) => {
+      response && (this.user = response);
+    });
     if (!this.user) {
       this.router.navigate(['/register']);
     }
@@ -28,9 +30,11 @@ export class TrainerHomeComponent {
       this.myCourses = response.filter(
         (course) => course.trainerId === this.user.id
       );
-      if (this.myCourses.length > 0) {
-        this.haveCourses = true;
-      }
+      this.myCourses.map((course) => {
+        this.courseService.getModules().subscribe((resonse) => {
+          course.modules = resonse.filter((c) => c.courseId === course.id);
+        });
+      });
     });
   }
 

@@ -18,6 +18,11 @@ export class CourseDetailsComponent {
     this.courseId = this.routeParam.snapshot.params['courseId'];
     this.courseService.getCourseById(this.courseId).subscribe((response) => {
       this.course = response;
+      this.courseService.getModules().subscribe((response) => {
+        this.course.modules = response.filter(
+          (x) => x.courseId === this.courseId
+        );
+      });
     });
   }
 }

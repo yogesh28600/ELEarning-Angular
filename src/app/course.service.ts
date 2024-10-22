@@ -67,7 +67,7 @@ export class CourseService {
   }
 
   // Create a new module
-  createModule(module: ModuleDTO): Observable<any> {
+  createModule(module: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/CreateModule`, module, {
       headers: this.headers,
     });

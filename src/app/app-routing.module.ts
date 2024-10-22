@@ -6,6 +6,9 @@ import { LoginComponent } from './login/login.component';
 import { TrainerHomeComponent } from './trainer-home/trainer-home.component';
 import { CourseFormComponent } from './course-form/course-form.component';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { HomeComponent } from './home/home.component';
+import { ModuleFormComponent } from './module-form/module-form.component';
+import { ViewCourseComponent } from './view-course/view-course.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -14,6 +17,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create-course', component: CourseFormComponent },
   { path: 'course-details/:courseId', component: CourseDetailsComponent },
+  { path: '', component: HomeComponent },
+  { path: 'create-module/:courseId', component: ModuleFormComponent },
+  { path: 'view-course/:courseId', component: ViewCourseComponent },
 ];
 
 @NgModule({

@@ -1,3 +1,5 @@
+import { ModuleDTO } from './ModuleDTO';
+
 export interface CourseDTO {
   id: string; // UUID format
   title: string; // Title of the course
@@ -6,4 +8,7 @@ export interface CourseDTO {
   trainerId: string; // UUID format for the trainer
   category: string; // Course category
   price: number; // Price of the course
+  createdAt: Date;
+  updatedAt: Date;
+  modules: ModuleDTO[];
 }

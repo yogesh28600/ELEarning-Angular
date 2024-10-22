@@ -9,9 +9,10 @@ import { User } from '../Types/User';
   styleUrl: './learner-home.component.css',
 })
 export class LearnerHomeComponent {
-  user: User;
+  user!: User;
   constructor(private userStorage: UserStorageService) {
-    this.user = this.userStorage.getUser();
-    console.log(this.user);
+    this.userStorage.getUser().subscribe((response) => {
+      response && (this.user = response);
+    });
   }
 }

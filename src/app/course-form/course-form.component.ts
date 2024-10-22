@@ -9,9 +9,11 @@ import { UserStorageService } from '../shared/user-storage.service';
 @Component({
   selector: 'app-course-form',
   templateUrl: './course-form.component.html',
+  styleUrl: './course-form.component.css',
 })
 export class CourseFormComponent {
   courseForm: FormGroup;
+  id!: string;
   thumbnailFile: File | null = null; // To store the selected file
   constructor(
     private fb: FormBuilder,
@@ -21,11 +23,14 @@ export class CourseFormComponent {
     private userStorage: UserStorageService
   ) {
     this.courseForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(3)]],
+      title: ['', [Validators.required]],
       description: ['', [Validators.required, Validators.minLength(10)]],
       category: ['', Validators.required],
       thumbnail: [null, Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
+    });
+    this.userStorage.getUser().subscribe((response) => {
+      response && (this.id = response?.id);
     });
   }
   // Handle file input change
@@ -45,6 +50,7 @@ export class CourseFormComponent {
   }
   // Method to submit the form
   onSubmit(form: FormGroup): void {
+    console.log(form.value);
     if (this.courseForm.valid) {
       // Check if thumbnail file is available for upload
       if (this.thumbnailFile) {
@@ -55,7 +61,7 @@ export class CourseFormComponent {
               title: form.value['title'],
               description: form.value['description'],
               category: form.value['category'],
-              trainerId: this.userStorage.getUser().id, // You will replace this with the actual trainer ID
+              trainerId: this.id, // You will replace this with the actual trainer ID
               thumbnail: thumbnailURL, // Set the uploaded thumbnail URL
               price: form.value['price'],
             };

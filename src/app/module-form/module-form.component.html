@@ -1,0 +1,19 @@
+<section class="container">
+  <form [formGroup]="moduleForm" (ngSubmit)="onSubmit(moduleForm)" class="form">
+    <header>Add Module</header>
+    <div class="input-box">
+      <label>Module Title</label>
+      <input
+        type="text"
+        formControlName="title"
+        placeholder="Enter Module title"
+      />
+    </div>
+
+    <div class="input-box">
+      <label>Module Video</label>
+      <input type="file" accept=".mp4" (change)="onFileChange($event)" />
+    </div>
+    <button type="submit">Create module</button>
+  </form>
+</section>
