@@ -9,12 +9,20 @@ import { UserStorageService } from '../shared/user-storage.service';
 })
 export class HeaderComponent {
   user: User | null = null;
-  constructor(private userStorage: UserStorageService) {
-    this.userStorage.getUser().subscribe((response) => {
-      this.user = response;
+
+  constructor(private userStorageService: UserStorageService) {}
+
+  ngOnInit() {
+    // Subscribe to user changes
+    this.userStorageService.getUser().subscribe((user) => {
+      this.user = user; // Update user when it changes
     });
   }
+
   logout() {
-    this.userStorage.clearUser();
+    // Call the clearUser method from the service
+    this.userStorageService.clearUser().subscribe(() => {
+      // Optionally perform any other actions after user is cleared
+    });
   }
 }

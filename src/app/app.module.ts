@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,8 @@ import { HomeComponent } from './home/home.component';
 import { ModuleFormComponent } from './module-form/module-form.component';
 import { ViewCoursesComponent } from './view-courses/view-courses.component';
 import { ViewCourseComponent } from './view-course/view-course.component';
+import { BrowseCoursesComponent } from './browse-courses/browse-courses.component';
+import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { ViewCourseComponent } from './view-course/view-course.component';
     ModuleFormComponent,
     ViewCoursesComponent,
     ViewCourseComponent,
+    BrowseCoursesComponent,
+    EnrollCourseComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
   providers: [provideHttpClient()],

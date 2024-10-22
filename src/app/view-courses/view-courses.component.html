@@ -23,7 +23,7 @@
         <span class="badge">{{ course.category }}</span>
 
         <h3 class="h3">
-          <a [routerLink]="['/view-course', course.id]" class="card-title">{{
+          <a [routerLink]="['/enroll-course', course.id]" class="card-title">{{
             course.title
           }}</a>
         </h3>
@@ -32,6 +32,12 @@
           <p class="rating-text">{{ course.description }}</p>
         </div>
         <data class="price" value="29">${{ course.price }}</data>
+        <a
+          [routerLink]="['/enroll-course', course.id]"
+          class="bg-blue-600 text-white rounded-xl px-10 py-3"
+        >
+          Enroll
+        </a>
       </div>
     </div>
   </div>

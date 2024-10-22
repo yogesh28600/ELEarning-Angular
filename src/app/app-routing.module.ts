@@ -9,6 +9,8 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
 import { HomeComponent } from './home/home.component';
 import { ModuleFormComponent } from './module-form/module-form.component';
 import { ViewCourseComponent } from './view-course/view-course.component';
+import { BrowseCoursesComponent } from './browse-courses/browse-courses.component';
+import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'create-module/:courseId', component: ModuleFormComponent },
   { path: 'view-course/:courseId', component: ViewCourseComponent },
+  { path: 'browse-courses', component: BrowseCoursesComponent },
+  { path: 'enroll-course/:courseId', component: EnrollCourseComponent },
 ];
 
 @NgModule({

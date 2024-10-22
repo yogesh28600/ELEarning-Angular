@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
+import { CourseService } from '../course.service';
 import { CourseDTO } from '../Models/CourseDTO';
 import { ActivatedRoute } from '@angular/router';
-import { CourseService } from '../course.service';
 
 @Component({
-  selector: 'app-view-course',
+  selector: 'app-course-details',
   templateUrl: './view-course.component.html',
-  styleUrl: './view-course.component.css',
+  styleUrls: ['./view-course.component.css'],
 })
 export class ViewCourseComponent {
   courseId: string;
@@ -24,5 +24,11 @@ export class ViewCourseComponent {
         );
       });
     });
+  }
+  selectedVideoUrl: string | null = null;
+
+  playVideo(videoUrl: string): void {
+    console.log(videoUrl);
+    this.selectedVideoUrl = videoUrl;
   }
 }
