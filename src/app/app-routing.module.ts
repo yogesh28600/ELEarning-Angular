@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
-import { LearnerHomeComponent } from './learner-home/learner-home.component';
-import { LoginComponent } from './login/login.component';
-import { TrainerHomeComponent } from './trainer-home/trainer-home.component';
-import { CourseFormComponent } from './course-form/course-form.component';
-import { CourseDetailsComponent } from './course-details/course-details.component';
-import { HomeComponent } from './home/home.component';
-import { ModuleFormComponent } from './module-form/module-form.component';
-import { ViewCourseComponent } from './view-course/view-course.component';
-import { BrowseCoursesComponent } from './browse-courses/browse-courses.component';
-import { EnrollCourseComponent } from './enroll-course/enroll-course.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { LearnerHomeComponent } from './Components/learner-home/learner-home.component';
+import { LoginComponent } from './Components/login/login.component';
+import { TrainerHomeComponent } from './Components/trainer-home/trainer-home.component';
+import { CourseFormComponent } from './Components/course-form/course-form.component';
+import { CourseDetailsComponent } from './Components/course-details/course-details.component';
+import { HomeComponent } from './Components/home/home.component';
+import { ModuleFormComponent } from './Components/module-form/module-form.component';
+import { ViewCourseComponent } from './Components/view-course/view-course.component';
+import { BrowseCoursesComponent } from './Components/browse-courses/browse-courses.component';
+import { EnrollCourseComponent } from './Components/enroll-course/enroll-course.component';
+import { NotFoundComponent } from './Components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -24,6 +25,8 @@ const routes: Routes = [
   { path: 'view-course/:courseId', component: ViewCourseComponent },
   { path: 'browse-courses', component: BrowseCoursesComponent },
   { path: 'enroll-course/:courseId', component: EnrollCourseComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', redirectTo: '/not-found' },
 ];
 
 @NgModule({
