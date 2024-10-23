@@ -28,6 +28,15 @@
       <ul class="navbar-list">
         <li class="navbar-item">
           <a
+            routerLink="/browse-courses"
+            class="navbar-link"
+            data-nav-link
+            *ngIf="user && user.role === 'LEARNER'"
+            >Find Courses</a
+          >
+        </li>
+        <li class="navbar-item">
+          <a
             routerLink="/learner"
             class="navbar-link"
             data-nav-link
