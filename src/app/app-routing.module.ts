@@ -12,6 +12,7 @@ import { ViewCourseComponent } from './Components/view-course/view-course.compon
 import { BrowseCoursesComponent } from './Components/browse-courses/browse-courses.component';
 import { EnrollCourseComponent } from './Components/enroll-course/enroll-course.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
+import { PaymentCompleteComponent } from './Components/payment-complete/payment-complete.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -25,6 +26,10 @@ const routes: Routes = [
   { path: 'view-course/:courseId', component: ViewCourseComponent },
   { path: 'browse-courses', component: BrowseCoursesComponent },
   { path: 'enroll-course/:courseId', component: EnrollCourseComponent },
+  {
+    path: 'payment-success/:enrollmentId',
+    component: PaymentCompleteComponent,
+  },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', redirectTo: '/not-found' },
 ];

@@ -36,19 +36,18 @@ export class EnrollCourseComponent implements OnInit {
   }
   checkout() {
     if (this.user && this.course) {
-      let date = new Date();
       let enrollment = {
         learnerId: this.user.id,
         courseId: this.course.id,
         category: this.course.category,
         amountPaid: this.course.price,
       };
-      console.log(enrollment);
       this.enrollmentService
         .createEnrollment(enrollment)
         .subscribe((response) => {
+          console.log(response);
           if (response) {
-            this.router.navigate(['/learner']);
+            this.router.navigate(['/payment-success', response.id]);
           }
         });
     }

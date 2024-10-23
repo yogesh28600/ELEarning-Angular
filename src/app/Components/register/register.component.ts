@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  EmailValidator,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { UserService } from '../../Services/user.service';
 import { UserStorageService } from '../../Services/user-storage.service';
 import { Router } from '@angular/router';
@@ -12,6 +17,8 @@ import { UserDTO } from '../Models/UserDTO';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  userExists: boolean = false;
+  isInValid: boolean = false;
   constructor(
     private _form: FormBuilder,
     private userService: UserService,
@@ -28,16 +35,25 @@ export class RegisterComponent {
   }
   registerUser(form: FormGroup) {
     if (form.valid) {
-      this.userService.createUser(form.value).subscribe((response) => {
-        this.userService.getUserById(response).subscribe((data) => {
-          this.userStorage.setUser(data);
-          if (data.role === 'LEARNER') {
-            this.router.navigate(['/learner']);
-          } else {
-            this.router.navigate(['/trainer']);
-          }
-        });
+      this.userService.getUsers().subscribe((response) => {
+        let user = response.find((x) => x.email === form.value['Email']);
+        if (user) {
+          this.userExists = true;
+        } else {
+          this.userService.createUser(form.value).subscribe((response) => {
+            this.userService.getUserById(response).subscribe((data) => {
+              this.userStorage.setUser(data);
+              if (data.role === 'LEARNER') {
+                this.router.navigate(['/learner']);
+              } else {
+                this.router.navigate(['/trainer']);
+              }
+            });
+          });
+        }
       });
+    } else {
+      this.isInValid = true;
     }
   }
 }

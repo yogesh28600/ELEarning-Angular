@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  isInValid: boolean = false;
   constructor(
     private _form: FormBuilder,
     private userService: UserService,
@@ -23,20 +24,23 @@ export class LoginComponent {
     });
   }
   loginUser(form: FormGroup) {
-    this.userService.getUsers().subscribe((response) => {
-      console.log(response);
-      var user = response.find((u) => u['email'] === form.value['Email']);
-      console.log(form.value['email']);
-      if (user && user.passwordHash === form.value['PasswordHash']) {
-        this.userStorage.setUser(user);
-        if (user.role == 'LEARNER') {
-          this.router.navigate(['/learner']);
+    if (form.valid) {
+      this.userService.getUsers().subscribe((response) => {
+        console.log(response);
+        var user = response.find((u) => u['email'] === form.value['Email']);
+        if (user && user.passwordHash === form.value['PasswordHash']) {
+          this.userStorage.setUser(user);
+          if (user.role == 'LEARNER') {
+            this.router.navigate(['/learner']);
+          } else {
+            this.router.navigate(['/trainer']);
+          }
         } else {
-          this.router.navigate(['/trainer']);
+          this.isInValid = true;
         }
-      } else {
-        console.log('login failed');
-      }
-    });
+      });
+    } else {
+      this.isInValid = true;
+    }
   }
 }

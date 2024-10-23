@@ -14,6 +14,7 @@ import { UserStorageService } from '../../Services/user-storage.service';
 export class CourseFormComponent {
   courseForm: FormGroup;
   id!: string;
+  isInvalid: boolean = false;
   thumbnailFile: File | null = null; // To store the selected file
   constructor(
     private fb: FormBuilder,
@@ -24,7 +25,7 @@ export class CourseFormComponent {
   ) {
     this.courseForm = this.fb.group({
       title: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.minLength(10)]],
+      description: ['', [Validators.required]],
       category: ['', Validators.required],
       thumbnail: [null, Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
@@ -79,7 +80,7 @@ export class CourseFormComponent {
         console.error('No valid thumbnail file selected');
       }
     } else {
-      console.log('Course Form is invalid');
+      this.isInvalid = true;
     }
   }
 }

@@ -3,16 +3,34 @@
   <div class="login form">
     <header>Login</header>
     <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm)">
+      <span class="text-red-400" *ngIf="isInValid">Invalid Credentials</span>
       <input
         type="text"
         formControlName="Email"
         placeholder="Enter your email"
       />
+      <span
+        style="color: red"
+        *ngIf="
+          loginForm.controls['Email'].touched &&
+          loginForm.controls['Email'].hasError('required')
+        "
+        >Email is required</span
+      >
+
       <input
         type="password"
         formControlName="PasswordHash"
         placeholder="Enter your password"
       />
+      <span
+        style="color: red"
+        *ngIf="
+          loginForm.controls['PasswordHash'].touched &&
+          loginForm.controls['PasswordHash'].hasError('required')
+        "
+        >Password is required</span
+      >
       <input type="submit" class="button" value="Login" />
     </form>
     <div class="signup">

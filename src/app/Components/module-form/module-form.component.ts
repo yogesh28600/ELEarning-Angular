@@ -15,7 +15,7 @@ export class ModuleFormComponent {
   Id!: string;
   moduleForm: FormGroup;
   videoFile: File | null = null; // To store the selected file
-
+  isInvalid: boolean = false;
   constructor(
     private fb: FormBuilder,
     private mediaService: MediaService,
@@ -52,7 +52,7 @@ export class ModuleFormComponent {
 
   // Method to submit the form
   onSubmit(form: FormGroup): void {
-    if (this.moduleForm.valid) {
+    if (form.valid) {
       // Check if video file is available for upload
       if (this.videoFile) {
         this.mediaService.uploadMedia(this.videoFile).subscribe({
@@ -80,10 +80,10 @@ export class ModuleFormComponent {
           },
         });
       } else {
-        console.error('No valid video file selected');
+        this.isInvalid = true;
       }
     } else {
-      console.log('Module Form is invalid');
+      this.isInvalid = true;
     }
   }
 }
